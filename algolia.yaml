@@ -1,0 +1,5 @@
+---
+app_id: "<app id>"
+admin_key: "<admin key>"
+index_name: "<index name>"
+index_file: "./public/algolia.json"
