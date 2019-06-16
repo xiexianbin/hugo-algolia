@@ -3,10 +3,10 @@
 GOCMD=go
 GOBUILD=$(GOCMD) build
 GOCLEAN=$(GOCMD) clean
-BINARY_NAME=hugo-lalgolia
-BINARY_LINUX=hugo-lalgolia-linux
-BINARY_MAC=hugo-lalgolia-mac
-BINARY_WIN=hugo-lalgolia-win
+BINARY_NAME=hugo-algolia
+BINARY_LINUX=$(BINARY_NAME)-linux
+BINARY_MAC=$(BINARY_NAME)-mac
+BINARY_WIN=$(BINARY_NAME)-win
 
 all: clean test build build-linux build-mac build-windows
 test:
