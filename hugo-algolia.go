@@ -1,13 +1,13 @@
 package main
 
 import (
-	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"log"
 	"os"
 
 	"github.com/algolia/algoliasearch-client-go/algoliasearch"
+	"gopkg.in/yaml.v2"
 )
 
 type Config struct {
@@ -24,17 +24,17 @@ func Sync2Algolia() {
 	content, _ := ioutil.ReadFile(cfg.IndexFile)
 
 	var objects []algoliasearch.Object
-	if err := json.Unmarshal(content, &objects); err != nil {
+	if err := yaml.Unmarshal(content, &objects); err != nil {
 		fmt.Println(err)
 		return
 	}
 
 	res, err := index.AddObjects(objects)
 	if err != nil {
-		fmt.Println("Sync to algolia failed: ", err)
+		fmt.Println("Sync to algolia failed:", err)
 	} else {
-		fmt.Println("Task id: ", res.TaskID)
-		fmt.Println("Object IDs: ", res.ObjectIDs)
+		fmt.Println("Task id:", res.TaskID)
+		fmt.Println("Object IDs:", res.ObjectIDs)
 		fmt.Println("Sync to algolia Success.")
 	}
 }
@@ -49,13 +49,13 @@ func main() {
 
 	_cfg, err := ioutil.ReadFile(os.Args[1])
 	if err != nil {
-		log.Println("Read config file failed: ", err)
+		log.Println("Read config file failed:", err)
 		return
 	}
 
-	err = json.Unmarshal(_cfg, &cfg)
+	err = yaml.Unmarshal(_cfg, &cfg)
 	if err != nil {
-		log.Println("Unmarshal config failed: ", err)
+		log.Println("Unmarshal config failed:", err)
 		return
 	} else {
 		Sync2Algolia()
