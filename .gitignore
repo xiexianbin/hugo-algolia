@@ -3,4 +3,4 @@
 algolia.yaml.bak
 
 # bin
-hugo-algolia
+bin/*
