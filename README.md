@@ -7,6 +7,8 @@ a tools sync hugo json index to algolia.
 
 ```
 go build hugo-algolia.go
+or
+go run hugo-algolia.go algolia.yaml
 ```
 
 ## how to config
